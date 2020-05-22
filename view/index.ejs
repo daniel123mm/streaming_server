@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html ng-app="myApp" ng-controller="customersCtrl">
-<title>YOU To Be</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="css/homePage.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<head>
+  <title>YOU To Be</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/homePage.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
 <body>
 
 <div class="w3-top">
@@ -60,7 +62,7 @@
   --video list grid
 -->
   <div class="w3-row-padding">
-   <a href="streaming?dir=one_piece&name=one_piece" ng-repeat="video in videoList">
+   <a ng-repeat="video in videoList" ng-href="/streaming?{{video.dash}}">
 	  <div class="w3-col l3 m6 w3-margin-bottom">
         <div class="w3-display-container">
           <div class="w3-display-topleft w3-black w3-padding">{{video.name}}</div>

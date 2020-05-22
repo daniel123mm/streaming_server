@@ -4,8 +4,8 @@ var express = require('express'),
 	path = require('path'),
 	Router = require('./router/router'),
 	bodyParser = require("body-parser"),
-	multer = require('multer'),
 	helmet = require('helmet');
+	compress = require('compression'); //gzip file
 
 var WEB_PORT = 3000;
 
@@ -20,6 +20,9 @@ app.set("port" , process.argv[2] || process.env.PORT || WEB_PORT );
 //security
 app.use(helmet());
 
+//reduce the file size
+app.use(compress());
+
 //view engine setup
 app.set("views" , path.join(__dirname, "view"));
 app.set('view engine', 'ejs');
@@ -33,6 +36,8 @@ app.use(function (req, res, next) {
   });
 
 Router.setRouters(app,process.argv[2] || process.env.PORT || WEB_PORT);
+
+Server.setMaxListeners(0);
 
 //** open start */
 Server.listen(app.get('port'),'127.0.0.1',function(){
