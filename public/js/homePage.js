@@ -11,7 +11,7 @@ function logout(){
 var app = angular.module('myApp', []);
 app.controller('customersCtrl', function($scope) {
     $.ajax({
-        url : "http://127.0.0.1:8080/getVideoList",
+        url : "/getVideoList",
         type : "GET",
         dateType : "json",
         async : false,

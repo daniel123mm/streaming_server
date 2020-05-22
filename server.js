@@ -7,7 +7,7 @@ var express = require('express'),
 	multer = require('multer'),
 	helmet = require('helmet');
 
-var WEB_PORT = 8080;
+var WEB_PORT = 3000;
 
 //static file setup
 app.use(express.static(path.join(__dirname, 'public')));
@@ -15,7 +15,7 @@ app.use(express.json({limit: '50mb' }));
 app.use(express.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
 app.use(bodyParser.json());
 //app.use(multer());
-app.set("port" , WEB_PORT);
+app.set("port" , process.argv[2] || process.env.PORT || WEB_PORT );
 
 //security
 app.use(helmet());
@@ -32,10 +32,10 @@ app.use(function (req, res, next) {
 	next();
   });
 
-Router.setRouters(app);
+Router.setRouters(app,process.argv[2] || process.env.PORT || WEB_PORT);
 
 //** open start */
 Server.listen(app.get('port'),'127.0.0.1',function(){
-	console.log('http server listen on port 8080');
+	console.log('http server listen on port ' + app.get('port'));
 });
 
