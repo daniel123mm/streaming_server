@@ -4,12 +4,15 @@ var express = require('express'),
 	path = require('path'),
 	Router = require('./router/router'),
 	bodyParser = require("body-parser"),
-	helmet = require('helmet');
-	compress = require('compression'); //gzip file
+	helmet = require('helmet'),
+	compress = require('compression'), //gzip file
+	favicon = require('serve-favicon');
+
 
 var WEB_PORT = 3000;
 
 //static file setup
+app.use(favicon(path.join(__dirname, 'public','images', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json({limit: '50mb' }));
 app.use(express.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
