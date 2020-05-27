@@ -4,7 +4,7 @@ const mongoDB = 'mongodb://localhost:27017/streamingDB';
 var SQL = function (){
     this.connect = function (){
         //Set up default mongoose connection
-        mongoose.connect(mongoDB,{useNewUrlParser: true});
+        mongoose.connect(mongoDB,{useUnifiedTopology: true,useNewUrlParser: true});
         // Get Mongoose to use the global promise library
         mongoose.Promise = global.Promise;
         //Get the default connection
@@ -25,11 +25,14 @@ SQL.prototype.close = function()
     this.db.close();
 }
 
-SQL.prototype.insert = async function (model , data){         
-    model.create(data , function (err , docs){
-        if (err) throw err;
-        console.log("儲存成功!");
-    });
+SQL.prototype.insert = async function (model){  
+    return new Promise((resolve,reject)=>{
+        model.save(function(err , doc){
+            if (err)throw err;
+            console.log("Document inserted succussfully!");
+            resolve(1);
+        });
+    });     
 }
 
 SQL.prototype.query = async function (model , obj)

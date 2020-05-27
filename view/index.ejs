@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html ng-app="myApp" ng-controller="customersCtrl">
 <head>
-  <title>YOU To Be</title>
+  <title>YouTobe</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/w3.css">
   <link rel="stylesheet" href="css/homePage.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="js/angular.min.js"></script>
 </head>
 
 <body>
 
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <div class="w3-bar-item w3-button" onclick="location.href='/';"><b>YOU</b> ToBe</div>
+    <div class="w3-bar-item w3-button" onclick="location.href='/';"><b>You</b>Tobe</div>
+
+    <div class="w3-bar-item w3-right">
+      <button onclick="register()">註冊</button>
+    </div>
 
     <div class="w3-bar-item w3-right">
       <button onclick="login()">登入</button>
     </div>
-
+   
   </div>
 </div>
 
@@ -26,17 +30,16 @@
   --login form
 -->
 <div id="id01" class="modal">
-  <form class="modal-content animate" action="login.php" method="post" >
-
+  <form class="modal-content animate">
     <div class="container">
-          <h2>使用者登入</h2>
+      <h2>使用者登入</h2>
       <label><b>帳號</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
       <label><b>密碼</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
 
-      <button type="submit">登入</button>
+      <button ng-click="submitAccount() ">登入</button>
     </div>
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
@@ -53,7 +56,6 @@
 
 
 <div class="w3-content w3-padding" style="max-width:1564px">
-
   <div class="w3-container w3-padding-32" id="Videos">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">最新影片</h3>
   </div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="customersCtrl">
+<head>
+<title>YouTobe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/registerPage.css">
+<link rel="stylesheet" href="css/w3.css">
+<script src="js/angular.min.js"></script>
+</head>
+<body>
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+          <div class="w3-bar-item w3-button" onclick="location.href='/';"><b>You</b>Tobe</div>
+      
+          <div class="w3-bar-item w3-right">
+            <button onclick="register()">註冊</button>
+          </div>
+      
+          <div class="w3-bar-item w3-right">
+            <button onclick="login()">登入</button>
+          </div>
+         
+        </div>
+    </div>
+
+    <div class="container">
+        <form>
+            <div class="formContainer">
+              <h1>註冊成為<b>You</b>Tobe會員</h1>
+              <hr>
+          
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Email" name="email" id="email" required>
+          
+              <label for="psw"><b>密碼</b></label>
+              <input type="password" placeholder="密碼" name="psw" id="psw" required>
+          
+              <label for="psw-repeat"><b>確認密碼</b></label>
+              <input type="password" placeholder="再次輸入密碼" name="psw-repeat" id="psw-repeat" required>
+
+              <label id="compare"></label>
+              <hr>
+    
+              <button ng-click="submitInfo()" class="registerbtn">註冊</button>
+            </div>
+            
+            <div class="container signin">
+              <p>已經是會員? <a href="#">登入</a>.</p>
+            </div>
+          </form>
+    </div>
+    <script src="js/registerPage.js"></script>
+</body>
+</html>

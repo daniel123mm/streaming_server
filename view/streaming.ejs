@@ -13,7 +13,7 @@
       -- Make sure to include the video.js CSS. This could go in
       -- the <head>, too.
       -->
-    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+    <link href="css/video-js.css" rel="stylesheet">
 
     <!--
       -- Include video.js, dash.js, and
@@ -29,19 +29,26 @@
     <script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <!-- Font-awesome -->
     <!--link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"-->
-  
+    <link rel="stylesheet" href="css/w3.css">
+    <script src="js/angular.min.js"></script>
 </head>
 <body>
 
   <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-      <div class="w3-bar-item w3-button" onclick="location.href='/';"><b>YOU</b> ToBe</div>
-        <div class="w3-right w3-hide-small">
+      <div class="w3-bar-item w3-button" onclick="location.href='/';"><b>You</b>Tobe</div>
+      
+      <div class="w3-bar-item w3-right">
+        <button onclick="register()">註冊</button>
       </div>
+  
+      <div class="w3-bar-item w3-right">
+        <button onclick="login()">登入</button>
+      </div>
+      
     </div>
   </div>
 
@@ -49,6 +56,5 @@
     <video id="videoPlayer" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered" controls autoplay muted></video>
   </div>
 
-  <script src="js/streamingPage.js"></script>
 </body>
 </html>

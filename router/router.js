@@ -3,7 +3,8 @@ exports.setRouters = function (app){
 
     app.get("/" , process.getIndex);
     app.get("/streaming", process.getStreaming);
-    app.get('/getVideoList' , process.getVideoList);
-    //app.get('getUser', process.getUser);
-    //app.post('/upload' , process.upLoad);
+    app.get("/register", process.getRegister);
+    app.get("/getVideoList" , process.getVideoList);
+    app.post("/register", process.newAccount);
+    app.post("/login", process.login);
 }

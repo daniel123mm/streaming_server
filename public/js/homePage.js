@@ -3,9 +3,8 @@ function login(){
     document.getElementById('id01').style.display = 'block';
 }
 
-function logout(){
-   sessionStorage.clear();
-   window.location.href = '/';
+function register(){
+    window.location.href = '/register';
 }
 
 //get list from server
