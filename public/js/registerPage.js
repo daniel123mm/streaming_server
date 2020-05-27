@@ -11,6 +11,8 @@ function register(){
 var app = angular.module('myApp', []);
 app.controller('customersCtrl', function($scope, $http) {
     $scope.submitInfo = function(){
+        var name = document.getElementById("name").value;
+        var account = document.getElementById("account").value;
         var email = document.getElementById("email").value;
         var psw = document.getElementById("psw").value;
         var repsw = document.getElementById("psw-repeat").value;
@@ -19,8 +21,25 @@ app.controller('customersCtrl', function($scope, $http) {
             label.innerHTML = "再次輸入的密碼與密碼不同";
         }else{
             label.innerHTML = "";
-            var obj = {"email":email, "psw":psw};
-            console.log(obj);
+            var obj = {
+                "name"      : name,
+                "account"   : account,
+                "password"  : psw,
+                "email"     : email
+            };
+            //console.log(obj);
+            $http({
+                url : "/newAccount",
+                method : "POST",
+                data: obj,
+                dateType : "json",
+                async : false,
+            }).then(function success(result) {
+                console.log(result);
+                window.location.href = '/';
+            }, function error(error) {
+                console.log("錯誤: " + error);
+            });
         }
        
     }

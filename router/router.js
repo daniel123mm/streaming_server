@@ -5,6 +5,6 @@ exports.setRouters = function (app){
     app.get("/streaming", process.getStreaming);
     app.get("/register", process.getRegister);
     app.get("/getVideoList" , process.getVideoList);
-    app.post("/register", process.newAccount);
+    app.post("/newAccount", process.newAccount);
     app.post("/login", process.login);
 }
