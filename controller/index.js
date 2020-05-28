@@ -4,6 +4,10 @@ var insert = require('../model/db_insert');
 
 exports.getIndex = async function(req, res)
 {
+    if(req.session.user!== null){
+        req.user=req.session.user;
+    }   
+    console.log(req.user)
     res.render("index");
 }
 
@@ -39,9 +43,17 @@ exports.login = async function(req, res){
     else{
         if(!bcrypt.compareSync(data.password, user.password))
             res.status(400).send({ message: "The password is invalid" });
-        else
+        else{
+            req.session.user =  {account:user.account,password:user.password,name:user.name};
+            //res.redirect('index'); 
             res.send({ message: "登入成功" });
+        }
     }
+}
+
+exports.logout = function(req,res){
+    delete req.session.user;
+    res.send('index'); 
 }
 
 

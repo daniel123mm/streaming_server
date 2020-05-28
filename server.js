@@ -6,6 +6,9 @@ var express = require('express'),
 	bodyParser = require("body-parser"),
 	helmet = require('helmet'),
 	compress = require('compression'), //gzip file
+	session = require('express-session'),
+	redis = require('redis'),
+	RedisStore = require('connect-redis')(session),
 	favicon = require('serve-favicon');
 
 
@@ -38,6 +41,20 @@ app.use(function (req, res, next) {
 	next();
   });
 
+// 建立 session 中介軟體
+let redisClient = redis.createClient();//需要先啟動 command: redis-server
+redisClient.on("error", function (err) {
+    console.log("Error " + err);
+});
+
+const sessionMiddleware = session({ 
+    store: new RedisStore({ client: redisClient }),
+    secret: 'recommand 128 bytes random string', //加密key 可以隨意書寫
+	cookie: { maxAge: 60000 },//兩次請求的時間差 即超過這個時間再去訪問 session就會失效
+	resave: false
+ });
+ app.use(sessionMiddleware);
+ 
 Router.setRouters(app,process.argv[2] || process.env.PORT || WEB_PORT);
 
 Server.setMaxListeners(0);
