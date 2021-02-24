@@ -21,7 +21,6 @@ exports.login = async function(account){
     var collections = accountModel;
     var user = null;
     await database.query(collections, account).then(async(result)=>{
-        console.log(result.data);
         user = result.data[0];
     });
     return user;
