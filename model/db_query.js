@@ -12,8 +12,6 @@ exports.getVideoList = async function(){
         for(var i = 0;i < result.length;i++)
             list.push(result.data[i]);
     });
-    //console.log(list);
-    database.close();
     return list;
 }
 
@@ -26,7 +24,6 @@ exports.login = async function(account){
         console.log(result.data);
         user = result.data[0];
     });
-    database.close();
     return user;
 }
 

@@ -104,5 +104,7 @@ dist
 .tern-port
 
 # DASH file
-public/dash
+#public/dash
 
+#reids cache
+dump.rdb

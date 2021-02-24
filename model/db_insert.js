@@ -7,9 +7,7 @@ exports.newAccount =  async function(data){
     database.connect();
     data.password = bcrypt.hashSync(data.password, 10);
     var collection = new accountModel(data);
-    console.log(data);
     var success = await database.insert(collection);
-    database.close();
     return success;
 }
 

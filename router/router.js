@@ -1,12 +1,14 @@
+const path = require("path");
+const process = require("../controller/index")
+
+
 exports.setRouters = function (app){
-    var process = require("../controller/index")
-
-    app.get("/" , process.getIndex);
-    app.get("/streaming", process.getStreaming);
-    app.get("/register", process.getRegister);
-    app.get("/getVideoList" , process.getVideoList);
-    app.get("/logout",process.logout);
-    app.post("/newAccount", process.newAccount);
-    app.post("/login", process.login);
-
+    app.get("/api/video/getVideoList" , process.getVideoList);
+    app.get("/api/user/logout",process.logout);
+    app.get("/api/user/isLogin", process.isLogin);
+    app.post("/api/user/newAccount", process.newAccount);
+    app.post("/api/user/login", process.login);
+    app.get('/*', (req,res) =>{
+        res.sendFile(path.join(__dirname, '../', 'view', 'index.html'));
+    });
 }

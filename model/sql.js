@@ -29,7 +29,6 @@ SQL.prototype.insert = async function (model){
     return new Promise((resolve,reject)=>{
         model.save(function(err , doc){
             if (err)throw err;
-            console.log("Document inserted succussfully!");
             resolve(1);
         });
     });     
