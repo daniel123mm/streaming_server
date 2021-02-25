@@ -16,6 +16,8 @@ services:
         MONGO_URL: mongodb://db:27017/streamingDB
         REDIS_URL: redis://redis
         NODE_ENV: production
+      volumes:
+        - ./src/public:/app/public
       command: node server.js
     db:
       image: mongo

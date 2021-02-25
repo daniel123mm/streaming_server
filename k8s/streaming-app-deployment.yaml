@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: D:\lib\k8s\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: streaming-app
+  name: streaming-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: streaming-app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: D:\lib\k8s\kompose.exe convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: streaming-app
+    spec:
+      containers:
+      - args:
+        - node
+        - server.js
+        env:
+        - name: MONGO_URL
+          value: mongodb://10.109.223.57:27017/streamingDB
+        - name: NODE_ENV
+          value: production
+        - name: PORT
+          value: "8080"
+        - name: REDIS_URL
+          value: redis://10.98.114.115:6379
+        image: daniel123mm/streaming-app
+        imagePullPolicy: ""
+        name: streaming-app
+        ports:
+        - containerPort: 8080
+        resources: {}
+        volumeMounts:
+        - mountPath: /app/public
+          name: streaming-app
+        workingDir: /app
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: 
+      - name: streaming-app
+        persistentVolumeClaim:
+          claimName: streaming-app-claim
+status: {}
