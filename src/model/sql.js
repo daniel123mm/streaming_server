@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-const mongoDB = 'mongodb://localhost:27017/streamingDB';
+const mongoDB = process.env.MONGO_URL || 'mongodb://localhost:27017/streamingDB';
 
 var SQL = function (){
     this.connect = function (){

@@ -108,3 +108,6 @@ dist
 
 #reids cache
 dump.rdb
+
+#reids volumes
+docker-volumes-redis-data
