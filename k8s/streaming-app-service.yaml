@@ -12,7 +12,7 @@ spec:
   ports:
   - name: "80"
     port: 80
-    targetPort: 8080
+    targetPort: 80
   selector:
     io.kompose.service: streaming-app
 status:

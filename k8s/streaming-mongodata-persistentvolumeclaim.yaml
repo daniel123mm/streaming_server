@@ -5,9 +5,9 @@ metadata:
     io.kompose.service: streaming-mongodata
   name: streaming-mongodata-claim
 spec:
-  storageClassName: manual
+  storageClassName: mongodata #the pv storage name
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce #can read and write in one node
   resources:
     requests:
       storage: 3Gi

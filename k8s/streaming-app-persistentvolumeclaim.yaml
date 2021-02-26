@@ -5,7 +5,7 @@ metadata:
     io.kompose.service: streaming-app
   name: streaming-app-claim
 spec:
-  storageClassName: manual
+  storageClassName: streaming-app
   accessModes:
     - ReadWriteOnce
   resources:

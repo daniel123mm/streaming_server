@@ -6,7 +6,7 @@ metadata:
     io.kompose.service: streaming-mongodata
   name: pv-streaming-mongodata
 spec:
-  storageClassName: manual
+  storageClassName: mongodata
   capacity:
     storage: 10Gi
   accessModes:

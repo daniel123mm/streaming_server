@@ -3,10 +3,10 @@ kind: PersistentVolume
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: streaming-app
+    io.kompose.service: pv-streaming-app
   name: pv-streaming-app
 spec:
-  storageClassName: manual
+  storageClassName: streaming-app
   capacity:
     storage: 10Gi
   accessModes:
