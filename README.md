@@ -1,13 +1,13 @@
 # streaming_server
-##frontend lib
-###videojs-quality-selector 
+## frontend lib
+### videojs-quality-selector 
 https://github.com/silvermine/videojs-quality-selector    
-###videojs and dashjs
+### videojs and dashjs
 https://videojs.github.io/videojs-contrib-dash/   
-###videojs and dashjs  
+### videojs and dashjs  
 https://github.com/videojs/videojs-contrib-dash 
 
-##pod port forward 
+## pod port forward 
 ``kubectl port-forward db 27077:27017``
-##expose svc  
+## expose svc  
 `` kubectl expose deployment streaming-app --type=LoadBalancer --name=streaming-app-service``
