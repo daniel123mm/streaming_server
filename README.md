@@ -1,4 +1,5 @@
 # streaming_server
+A simple streaming aerver  
 ## frontend lib
 ### videojs-quality-selector 
 https://github.com/silvermine/videojs-quality-selector    
