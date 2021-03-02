@@ -29,13 +29,13 @@ spec:
         - server.js
         env:
         - name: MONGO_URL
-          value: mongodb://10.107.172.190:27077/streamingDB
+          value: mongodb://db.default.svc.cluster.local:27077/streamingDB ## like => mongodb://10.107.172.190:27077/streamingDB
         - name: NODE_ENV
           value: production
         - name: PORT
           value: "8080"
         - name: REDIS_URL
-          value: redis://10.101.179.202:6379
+          value: redis://redis.default.svc.cluster.local:6379 ## like => redis://10.101.179.202:6379
         image: daniel123mm/streaming-app
         imagePullPolicy: ""
         name: streaming-app

@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "5ebe3d9ac26e8e2dbcd14f87"
+  },
+  "name": "航海王",
+  "coverImage": "images/one.jpg",
+  "dash": "one_piece",
+  "describe": "我要成為海賊王"
+},{
+  "_id": {
+    "$oid": "5ebe3db4c26e8e2dbcd14f88"
+  },
+  "name": "NBA Final 2016",
+  "coverImage": "images/nba.jpg",
+  "dash": "nba",
+  "describe": "nba 2016 game7"
+},{
+  "_id": {
+    "$oid": "5ebe3dc9c26e8e2dbcd14f89"
+  },
+  "name": "齊木楠雄的災難",
+  "coverImage": "images/pyscial.jpg",
+  "dash": "kusua",
+  "describe": "一名十六歲的高中二年級學生，從一出生開始，他便是一名全能超能力者"
+},{
+  "_id": {
+    "$oid": "5ebe3dd7c26e8e2dbcd14f8a"
+  },
+  "name": "死恃",
+  "coverImage": "images/deadpool.jpg",
+  "dash": "dead",
+  "describe": "漫威漫畫所出版的美國漫畫書中的虛構人物角色"
+}]
