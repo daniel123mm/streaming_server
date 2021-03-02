@@ -7,7 +7,7 @@ https://videojs.github.io/videojs-contrib-dash/
 ### videojs and dashjs  
 https://github.com/videojs/videojs-contrib-dash 
 
-## pod port forward 
+## kubernetes pod port forward 
 ``kubectl port-forward db 27077:27017``
-## expose svc  
+## kubernetes expose svc  
 `` kubectl expose deployment streaming-app --type=LoadBalancer --name=streaming-app-service``
