@@ -5,13 +5,15 @@ const	Server = require('http').createServer(app)
 const	path = require('path')
 const	Router = require('./router/router')
 const	bodyParser = require("body-parser")
+const 	cookieParser = require('cookie-parser');
 const	helmet = require('helmet')
+const 	csrf = require('csurf')
 const	compress = require('compression') //gzip file
 const	session = require('express-session')
 const	redis = require('redis')
 const	RedisStore = require('connect-redis')(session)
 
-//var WEB_PORT = 8080;
+var PORT = process.env.PORT || 8080;
 
 //reduce the file size
 app.use(compress());
@@ -21,6 +23,12 @@ app.use(helmet());
 
 //static file setup
 app.use(express.static(path.join(__dirname, 'public')));
+
+//cookie parser
+app.use(cookieParser());
+
+//csrf protection
+var csrfProtection = csrf({ cookie: true })
 
 //body parser
 app.use(bodyParser.json());
@@ -49,10 +57,16 @@ const sessionMiddleware = session({
 });
 app.use(sessionMiddleware);
  
-Router.setRouters(app);
+Router.setRouters(app, csrfProtection);
+
+// error handler
+app.use(function(err, req, res, next) {
+	// render the error page
+	res.status(err.status || 500).send({message: err.message});
+});
 
 //** open start */
-Server.listen(process.env.PORT,'0.0.0.0',function(){
+Server.listen(PORT, process.env.HOST_URI, function(){
 	console.log('http server listen on port ' + process.env.PORT + ` (${process.env.NODE_ENV})`);
 });
 
