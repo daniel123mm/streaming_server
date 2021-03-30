@@ -2,7 +2,7 @@ const SQL = require("./sql");
 const bcrypt = require("bcryptjs");
 var accountModel = require("./schema/account_model.js");
 
-exports.newAccount =  async function(data){
+exports.newAccount = async function (data) {
     var database = new SQL();
     database.connect();
     data.password = bcrypt.hashSync(data.password, 10);

@@ -1,17 +1,17 @@
 require('dotenv').config()
-const 	express = require('express')
-const	app = express()
-const	Server = require('http').createServer(app)
-const	path = require('path')
-const	Router = require('./router/router')
-const	bodyParser = require("body-parser")
-const 	cookieParser = require('cookie-parser');
-const	helmet = require('helmet')
-const 	csrf = require('csurf')
-const	compress = require('compression') //gzip file
-const	session = require('express-session')
-const	redis = require('redis')
-const	RedisStore = require('connect-redis')(session)
+const express = require('express')
+const app = express()
+const Server = require('http').createServer(app)
+const path = require('path')
+const Router = require('./router/router')
+const bodyParser = require("body-parser")
+const cookieParser = require('cookie-parser');
+const helmet = require('helmet')
+const csrf = require('csurf')
+const compress = require('compression') //gzip file
+const session = require('express-session')
+const redis = require('redis')
+const RedisStore = require('connect-redis')(session)
 
 var PORT = process.env.PORT || 8080;
 
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 //csrf protection
-var csrfProtection = csrf({ cookie: true })
+var csrfProtection = ({ cookie: true })
 
 //body parser
 app.use(bodyParser.json());
@@ -40,33 +40,33 @@ app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
 	next();
-  });
+});
 
 // 建立 session 中介軟體
 let redisClient = redis.createClient(process.env.REDIS_URL || "redis://127.0.0.1");//需要先啟動 command: redis-server
 redisClient.on("error", function (err) {
-    console.log("Error " + err);
+	console.log("Error " + err);
 });
 
-const sessionMiddleware = session({ 
-    store: new RedisStore({ client: redisClient }),
-    secret: 'recommand 128 bytes random string', //加密key 可以隨意書寫
+const sessionMiddleware = session({
+	store: new RedisStore({ client: redisClient }),
+	secret: 'recommand 128 bytes random string', //加密key 可以隨意書寫
 	cookie: { maxAge: 6000000 },//兩次請求的時間差 即超過這個時間再去訪問 session就會失效
 	resave: false,
 	saveUninitialized: true
 });
 app.use(sessionMiddleware);
- 
+
 Router.setRouters(app, csrfProtection);
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
 	// render the error page
-	res.status(err.status || 500).send({message: err.message});
+	res.status(err.status || 500).send({ message: err.message });
 });
 
 //** open start */
-Server.listen(PORT, process.env.HOST_URI, function(){
+Server.listen(PORT, process.env.HOST_URI, function () {
 	console.log('http server listen on port ' + process.env.PORT + ` (${process.env.NODE_ENV})`);
 });
 
