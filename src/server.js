@@ -16,19 +16,19 @@ const RedisStore = require('connect-redis')(session)
 var PORT = process.env.PORT || 8080;
 
 //reduce the file size
-app.use(compress());
+//app.use(compress());
 
 //security
 app.use(helmet());
 
 //static file setup
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 //cookie parser
 app.use(cookieParser());
 
 //csrf protection
-var csrfProtection = ({ cookie: true })
+var csrfProtection = csrf({ cookie: true })
 
 //body parser
 app.use(bodyParser.json());

@@ -1,23 +1,55 @@
 version: '3'
 services:
+    web-server:
+      image: nginx:latest
+      volumes:
+        - ./ssl:/etc/ssl/myapp/
+        - ./nginx:/etc/nginx/conf.d/
+        - ./src/public:/var/www/public
+        - ./src/view:/var/www/html
+      ports:
+        - "80:80"
+        - "443:443"
     streaming-app:
       build:
         context: .
         dockerfile: ./Dockerfile
+      image: streaming-app:latest
       #restart: always ##production mode
       working_dir: /app
       ports:
-        - "80:8080"
+        - "3000:3000"
       depends_on:
         - db
         - redis
       environment:
-        PORT: 8080
+        PORT: 3000
+        MONGO_URL: mongodb://db:27017/streamingDB
+        REDIS_URL: redis://redis
+        ACCESS_TOKEN_SECRET: whyAreYouHere
+        NODE_ENV: production
+        HOST_URI: 0.0.0.0
+      command: node server.js
+    streaming-app-2:
+      build:
+        context: .
+        dockerfile: ./Dockerfile
+      image: streaming-app:latest
+      #restart: always ##production mode
+      working_dir: /app
+      ports:
+        - "3001:3001"
+      depends_on:
+        - db
+        - redis
+      environment:
+        PORT: 3001
         MONGO_URL: mongodb://db:27017/streamingDB
         REDIS_URL: redis://redis
         NODE_ENV: production
-      volumes:
-        - ./src/public:/app/public
+        ACCESS_TOKEN_SECRET: whyAreYouHere
+        NODE_ENV: production
+        HOST_URI: 0.0.0.0
       command: node server.js
     db:
       image: mongo

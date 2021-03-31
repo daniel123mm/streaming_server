@@ -12,7 +12,9 @@ exports.setRouters = function (app, csrfProtection) {
     app.get('/csrf-token', csrfProtection, (req, res) => {
         res.json({ csrfToken: req.csrfToken() });
     });
+    /*
     app.get('/*', (req, res) => {
         res.sendFile(path.join(__dirname, '../', 'view', 'index.html'));
     });
+    */
 }
