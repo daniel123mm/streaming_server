@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: D:\lib\k8s\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: web-server
+  name: web-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: web-server
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: D:\lib\k8s\kompose.exe convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: web-server
+    spec:
+      containers:
+      - image: nginx/latest
+        imagePullPolicy: ""
+        name: web-server
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/www/public
+          name: streaming-app-vol
+        - mountPath: /etc/nginx/conf.d/
+          name: nginx-conf
+        - name: web-server-tls
+          mountPath: "/etc/ssl/myapp/"
+          readOnly: true
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: 
+      - name: streaming-app-vol
+        persistentVolumeClaim:
+          claimName: streaming-app-claim
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf
+          items:
+            - key: nginx.conf
+              path: nginx.conf
+      - name: web-server-tls
+          secret:
+            secretName: web-server-tls
+status: {}

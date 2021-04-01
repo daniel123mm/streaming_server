@@ -40,16 +40,9 @@ spec:
         imagePullPolicy: ""
         name: streaming-app
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
         resources: {}
-        volumeMounts:
-        - mountPath: /app/public
-          name: streaming-app-vol
         workingDir: /app
       restartPolicy: Always
       serviceAccountName: ""
-      volumes: 
-      - name: streaming-app-vol
-        persistentVolumeClaim:
-          claimName: streaming-app-claim
 status: {}
